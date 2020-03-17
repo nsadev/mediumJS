@@ -1,0 +1,105 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 30px 0;
+  background: rgba(0, 85, 0, 0.158);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+p {
+
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.btn {
+  background-color: gold;
+  border: 1px solid darkgoldenrod;
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 8px 12px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, .4);
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.datas {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.grid {
+  max-width: 960px;
+  margin: 40px auto 40px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.card {
+  margin: 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+  transition: all 0.4s linear;
+  transform-style: preserve-3d;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, .4);
+}
+
+.card,
+.back,
+.front {
+  height: 150px;
+  width: 150px;
+}
+
+.back,
+.front {
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.front {
+  background: url("img/Q.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.back {
+  transform: rotateY(180deg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.selected {
+  transform: rotateY(180deg);
+}
+
+.match .front {
+  background: gold;
+}
+
+.footer {
+  text-align: center;
+}
+
+a {
+  color: black;
+}

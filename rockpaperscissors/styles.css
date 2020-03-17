@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #00285b;
+  color: white;
+  text-align: center;
+}
+
+header {
+  padding: 4% 0 3% 0;
+}
+
+h2 {
+  font-size: 38px;
+}
+
+.result {
+  font-size: 30px;
+  font-weight: 700;
+  padding: 2% 0;
+}
+
+.score-board {
+  border: 3px solid white;
+  border-radius: 2px;
+  width: 20%;
+  margin: 2% auto;
+  font-size: 38px;
+  padding: 2% 1.5%;
+  position: relative;
+}
+
+.badge {
+  background-color: orangered;
+  padding: 1.5% 3.5%;
+  font-size: 18px;
+}
+
+#user-label {
+  position: absolute;
+  top: 33%;
+  left: -10%;
+}
+
+#comp-label {
+  position: absolute;
+  top: 33%;
+  right: -17%;
+}
+
+.choices {
+  width: 40%;
+  margin: 0 auto;
+  font-size: 74px;
+  padding: 2% 0;
+}
+
+.choice {
+  display: inline-block;
+  padding: 2%;
+  margin: 0 4%;
+  transition: all 0.3s ease;
+}
+
+.choice:hover {
+  cursor: pointer;
+  border-bottom: 2px solid whitesmoke;
+}
+
+.action-message {
+  font-size: 20px;
+  padding: 2% 0;
+}
