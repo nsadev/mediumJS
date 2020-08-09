@@ -1,4 +1,6 @@
-const cards = [
+'use strict';
+
+const gameCards = [
   {
     name: '1',
     img: 'img/1.png',
@@ -49,7 +51,7 @@ const cards = [
   }
 ];
 
-const cardArr = [...cards, ...cards]
+const cardArr = [...gameCards, ...gameCards];
 
 let count = 0;
 let moves = 0;
@@ -57,6 +59,8 @@ let min = 0;
 let sec = 0;
 let firstGuess = '';
 let secondGuess = '';
+let time;
+
 const minutes = document.getElementById('min');
 const seconds = document.getElementById('sec');
 const game = document.getElementById('game');
@@ -101,26 +105,7 @@ const gamePlan = (arr) => {
   });
 }
 
-gamePlan(shuffle(cardArr));
-
-
-const match = () => {
-  const sel = document.querySelectorAll('.selected');
-  sel.forEach(card => {
-    card.classList.add('match');
-  });
-};
-
-const resetGuesses = () => {
-  firstGuess = '';
-  secondGuess = '';
-  count = 0;
-
-  const selected = document.querySelectorAll('.selected');
-  selected.forEach(card => {
-    card.classList.remove('selected');
-  })
-};
+window.onload = gamePlan(shuffle(cardArr));
 
 const timer = () => {
   sec++;
@@ -133,9 +118,50 @@ const timer = () => {
   seconds.innerHTML = sec;
 };
 
-const startTimer = () => setInterval(timer, 1000);
+const startTimer = () => time = setInterval(timer, 1000);
 
-game.addEventListener('click', event => {
+const stopTimer = () => {
+  clearInterval(time);
+};
+
+const gameOver = () => {
+  const modal = document.getElementById('modal');
+  modal.classList.add('show');
+  
+  const modalContent = `
+  <div  id="gameo">
+    <p>Well played!</p>
+    <p id="smaller">Total moves: ${moves}</br>
+    Total time: ${min}min ${sec}sec</p>
+    <button id="play-again">Play again</button><button id="cancel">Cancel</button>
+  </div>
+  `
+  modal.innerHTML = modalContent;
+
+  const mBtnRestart = document.getElementById('play-again');
+  const mBtnCancel = document.getElementById('cancel');
+
+  mBtnRestart.onclick = () => {
+    modal.classList.remove('show');
+    startOver();
+  }
+
+  mBtnCancel.onclick = () => modal.classList.remove('show');
+
+};
+
+const match = () => {
+  const sel = document.querySelectorAll('.selected');
+  sel.forEach(card => {
+    card.classList.add('match');
+  });
+
+  const m = document.querySelectorAll('.match');
+  (m.length === 24) ? stopTimer(setTimeout(gameOver, 700)) : null ;
+
+};
+
+const startGame = event => {
   let clicked = event.target;
   let previous = null;
   counter.innerHTML = moves+=1;
@@ -169,8 +195,42 @@ game.addEventListener('click', event => {
     }
     previous = clicked;
   }
-});
 
-const resetAll = () => window.location.reload();
+};
 
-reset.addEventListener('click', resetAll);
+game.addEventListener('click', startGame);
+
+const resetGuesses = () => {
+  firstGuess = '';
+  secondGuess = '';
+  count = 0;
+
+  const selected = document.querySelectorAll('.selected');
+  selected.forEach(card => {
+    card.classList.remove('selected');
+  });
+};
+
+const startOver = () => {
+  game.innerHTML = '';
+
+  moves = 0;
+  counter.innerHTML = moves;
+  
+  stopTimer();
+
+  min = 0;
+  sec = 0;
+  minutes.innerHTML = min;
+  seconds.innerHTML = sec;
+
+  const matched = document.querySelectorAll('.match');
+  matched.forEach(card => {
+    card.classList.remove('match');
+  });
+
+  resetGuesses();
+  gamePlan(shuffle(cardArr));
+};
+
+reset.addEventListener('click', startOver);
