@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" media="screen" href="style.css">
  
@@ -12,12 +13,12 @@
     <div class="datas">
       <p>Moves: <span id="moves"></span></span></p> 
       <p>Time: <span id="min"></span>min <span id="sec"></span>sec</p>
-      <p id="reset" class="btn">Restart game</p>
+      <button id="reset">Restart game</button>
     </div>
-    <div id="game" class="grid">
-    </div>
-
-    <footer class="footer">Made with ❤️ by <a target="_blank" href="https://github.com/nsadev">Sara</a></footer>
+    <main id="game" class="grid">
+    </main>
+    <div id="modal"></div>
+    <footer class="footer">Made with ❤️ by <a rel="noreferrer noopener" target="_blank" href="https://github.com/nsadev">Sara</a></footer>
 
     <script type="text/javascript" src="script.js"></script>
     
